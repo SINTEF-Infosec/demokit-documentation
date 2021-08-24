@@ -18,7 +18,7 @@
 # -- Project information -----------------------------------------------------
 
 project = 'Demokit'
-copyright = '2021, Guillaume Bour'
+copyright = '2021, SINTEF'
 author = 'Guillaume Bour'
 
 # The full version, including alpha/beta/rc tags
@@ -52,8 +52,8 @@ html_theme = 'sphinx_material'
 html_theme_options = {
         'nav_title': 'Demokit Documentation',
         'logo_icon': '&#xe871;',
-        'html_minify': True,
-        'css_minify': True,
+        'html_minify': False,
+        'css_minify': False,
         'color_accent': 'cyan',
         'globaltoc_depth': 4
         }

@@ -6,9 +6,20 @@
 Welcome to Demokit's documentation!
 ===================================
 
+This documentation provides information on how to use the demokit.
+
+.. Caution:: The documentation is still Work In Progress: it is not complete and might contain typos and mistakes.
+
+Table of contents
+=================
+
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
+
+   content/introduction/index
+   content/getting_started/index
+   content/development/index
+   content/changelog/index
 
 
 

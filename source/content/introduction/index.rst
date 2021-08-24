@@ -1,0 +1,64 @@
+Introduction
+************
+
+Available projects
+==================
+
+The demokit projects are hosted on `SINTEF-Infosec's GitHub <https://github.com/SINTEF-Infosec>`_:
+
+`demokit <https://github.com/SINTEF-Infosec/demokit>`_
+    This is the main repository in the project. It contains the code for creating demokit's node applications.
+
+`demokit-hardware <https://github.com/SINTEF-Infosec/demokit-hardware>`_
+    Contains the Python hardware library to be deployed on demokit's nodes. This module is then used by the core node to access
+    hardware level features.
+
+`demokit-examples <https://github.com/SINTEF-Infosec/demokit-examples>`_
+    Contains examples of use of the demokit.
+
+`demokit-utils <https://github.com/SINTEF-Infosec/demokit-utils>`_
+    A tool to interact with the demokit network: monitoring the events, sending events.
+
+`demokit-infra <https://github.com/SINTEF-Infosec/demokit-infra>`_
+    Contains the docker files and required configuration to setup the demokit infrastructure (event network, logging system, dashboards, etc.)
+
+`demokit-documentation <https://github.com/SINTEF-Infosec/demokit-documentation>`_
+    Repository for this documentation.
+
+
+Kit's features
+==============
+
+Events' Network
+---------------
+
+The main aspect of the kit is its events network, providing both broadcast and unicast capabilities to nodes.
+An event is composed of a Name and a Payload. The payload is a string (envisioned to be json), and is given as is to the event handler,
+who is responsible to handling it.
+
+Interacting with the events' network is aimed to be as easy as possible and to remove the burden of setting it up.
+One can register an event handler by calling: *node.OnEventDo(Action)*, where action is a core.Action, composed of the function to execute,
+a condition (whether or not to execute the action), and another action to be executed afterward if necessary.
+
+To send event, one can call: *node.BroadcastEvent(eventName, eventPayload)* or *node.SendEventTo(receiver, eventName, eventPayload)*
+
+Automatic State serving/update
+------------------------------
+
+A default demokit's node does not have any State (from an application perspective). You can define your own, and automatically serve it, simply by calling: *node.ServeState(state, allowEdit)*
+This will share the state as JSON on the node:8081/state endpoint. *allowEdit*, if true, allows anyone to edit the state from the same endpoint, with a PUSH method.
+
+Side note: only public fields from the State are shared and editable.
+
+Full HTTP API Capabilities
+--------------------------
+
+A node comes with its own API router (using `Gin <https://github.com/gin-gonic/gin>`_), and exposes it. One can then extend the node API without any problem.
+
+Easy access to hardware features
+--------------------------------
+
+A nodes might come with a HardwareLayer, providing access to hardware features such as:
+    - Sensors reading
+    - GPIO
+
